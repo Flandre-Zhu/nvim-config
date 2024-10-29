@@ -50,29 +50,29 @@ let g:parent_dir = fnamemodify(src_path,':p:h')
 
 augroup cpp
 	autocmd!
-	autocmd FileType cpp    source ~/.config/nvim/__vim/cpp.vim
+	autocmd FileType cpp    source ~/.config/nvim/.vim/cpp.vim
 augroup END
 
 augroup c
 	autocmd!
-	autocmd FileType c      source ~/.config/nvim/__vim/c.vim
+	autocmd FileType c      source ~/.config/nvim/.vim/c.vim
 augroup END
 
 augroup python
 	autocmd!
-	autocmd FileType python source ~/.config/nvim/__vim/python.vim
+	autocmd FileType python source ~/.config/nvim/.vim/python.vim
 augroup END
 
 augroup java
 	autocmd!
-	autocmd FileType java   source ~/.config/nvim/__vim/java.vim
+	autocmd FileType java   source ~/.config/nvim/.vim/java.vim
 augroup END
 augroup scala
 	autocmd!
-	autocmd FileType scala  source ~/.config/nvim/__vim/scala.vim
+	autocmd FileType scala  source ~/.config/nvim/.vim/scala.vim
 augroup END
 
 augroup html
 	autocmd!
-	autocmd FileType html   source ~/.config/nvim/__vim/html.vim
+	autocmd FileType html   source ~/.config/nvim/.vim/html.vim
 augroup END
