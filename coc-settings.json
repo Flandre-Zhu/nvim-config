@@ -1,0 +1,10 @@
+{
+	"diagnostic.enable": true,
+	"diagnostic.level": "error",
+	"pyright.inlayHints.enable": false,
+	"inlayHint.enable": false
+	"clangd.path": "/usr/bin/clangd",
+	"clangd.arguments": [
+     "--header-insertion=never"	
+	],
+}
