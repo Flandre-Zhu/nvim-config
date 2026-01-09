@@ -1,5 +1,5 @@
 syntax on
-colors catppuccin-mocha
+" colors catppuccin-mocha
 
 " plugin
 " source ~/.config/nvim/lua/plugin-config/markdownpre.vim'
@@ -10,7 +10,6 @@ set encoding=UTF-8
 
 set nu rnu
 set mouse=a
-" a="abc"
 set laststatus=2
 set tabstop=2
 set shiftwidth=2
@@ -20,13 +19,8 @@ set noexpandtab
 set backspace=indent,eol,start
 set foldmethod=manual
 
-set timeoutlen=300
-inoremap ( ()<esc>i
-inoremap [ []<esc>i
-inoremap { {}<esc>i
-inoremap {<cr> {<cr>}<esc>O
-inoremap ' ''<esc>i
-inoremap " ""<esc>i
+" (), [], {}, '', "" logic
+" see lua/keybind.lua
 
 " create new buffer to run
 function Create_term_buf(_type, size)

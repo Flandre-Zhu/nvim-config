@@ -4,6 +4,15 @@ local opts={
 }
 local keyset = vim.keymap.set
 
+-- basic key map
+keyset('i', '(', '()<esc>i', opts)
+keyset('i', '[', '[]<esc>i', opts)
+keyset('i', '\'', '\'\'<esc>i', opts)
+keyset('i', '\"', '\"\"<esc>i', opts)
+keyset('i', '{}', '{}<esc>i', opts)
+keyset('i', '{', '{<cr>}<esc>kA', opts)
+keyset('i', '<tab>', 'v:lua.smart_tab()', { noremap = true, expr = true })
+
 -- 自定义的各种功能
 keyset('n','<F1>',':call Create_buf_and_go_term()<CR>',opts)
 keyset('n','<F8>',':call Comp_Fuck_Run()<CR>',opts)
@@ -24,10 +33,7 @@ keyset("n", "g]", "<Plug>(coc-diagnostic-next)", {silent = true})
 keyset("n", "<leader>rn", "<Plug>(coc-rename)", {silent = true})
 -- coc completion
 local cocopt = {silent = true, noremap = true, expr = true, replace_keycodes = false}
-keyset("i", "<cr>", [[coc#pum#visible() ? coc#pum#confirm() : "<cr>"]], cocopt)
-keyset("i", "<c-j>", 'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_back_space() ? "<TAB>" : coc#refresh()', cocopt)
-keyset("i", "<c-k>", [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]], cocopt)
-keyset('i', '<tab>', 'v:lua.smart_coc_tab()', { noremap = true, expr = true })
+keyset("i", "<c-cr>", [[coc#pum#visible() ? coc#pum#confirm() : "<cr>"]], cocopt)
 
 -- smart tab: tab to escape (), or normal tab
 local function in_list(list, value)
@@ -55,19 +61,14 @@ function _G.smart_tab()
         return '\t' -- 插入 tab
     end
 end
--- tab: smart tab and coc snippets
-function _G.smart_coc_tab()
-  -- 1. coc 补全菜单
-  if vim.fn["coc#pum#visible"]() == 1 then
-		print("TAB: coc pum")
-    return vim.fn
-  end
+function _G.smart_brace()
+	local col =  vim.fn.col('.')
+  local line = vim.fn.getline('.')
 
-  -- 2. coc snippet 占位符跳转
-  if vim.fn == 1 then
-    return vim.fn["coc#snippet#next"]()
+	-- note: '\x1b' = <esc>
+  if col > #line then
+    return "{\n}\x1bO"
+  else
+    return "{}\x1bi"
   end
-
-  -- 3. 你的 smart_tab 逻辑
-  return smart_tab()
 end
